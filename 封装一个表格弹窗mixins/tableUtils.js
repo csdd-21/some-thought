@@ -1,9 +1,3 @@
-// 布局样式 
-export const formItemLayout = {
-  labelCol: { span: 2 },
-  wrapperCol: { span: 14 }
-}
-
 /**
  * 列表勾选项参数生成函数
  * @param type {String} 可选，为radio时表示单选框，为checkbox时表示多选框
@@ -19,7 +13,7 @@ export function rowSelectionUtil(type = 'checkbox', disabledKey) {
     onChange: (selectedRowKeys, selectedRows) => {
       this.rowSelection.selectedRowKeys = selectedRowKeys;
       this.rowSelection.selectedRows = selectedRows;
-      this.rowSelection.selectedDatas[this.pagination.current] = selectedRows
+      this.rowSelection.selectedDatas[this.pagination.current] = selectedRows;
     },
     getCheckboxProps: (record) => ({
       props: {
@@ -36,7 +30,7 @@ export function rowSelectionUtil(type = 'checkbox', disabledKey) {
 */
 export function paginationWithNoTotalUtil(callback) {
   if (!(callback instanceof Function)) {
-    throw new Error('paginationWithNoTotalUtil分页器参数生成函数要求必须提供page发生变化时执行的回调函数')
+    throw new Error('paginationWithNoTotalUtil分页器参数生成函数要求必须提供page发生变化时执行的回调函数');
   }
   return {
     current: 1,
@@ -44,7 +38,7 @@ export function paginationWithNoTotalUtil(callback) {
     total: 0,
     onChange: (current) => {
       this.pagination.current = current;
-      callback()
+      callback();
     },
   };
 }
@@ -56,7 +50,7 @@ export function paginationWithNoTotalUtil(callback) {
 */
 export function paginationWithTotalUtil(callback) {
   if (!(callback instanceof Function)) {
-    throw new Error('paginationWithTotalUtil分页器参数生成函数要求必须提供page发生变化时执行的回调函数')
+    throw new Error('paginationWithTotalUtil分页器参数生成函数要求必须提供page发生变化时执行的回调函数');
   }
   return {
     current: 1,
@@ -69,12 +63,12 @@ export function paginationWithTotalUtil(callback) {
     },
     onChange: (current) => {
       this.pagination.current = current;
-      callback()
+      callback();
     },
     onShowSizeChange: (current, pageSize) => {
       this.pagination.current = current;
       this.pagination.pageSize = pageSize;
-      callback()
+      callback();
     }
   };
 }
@@ -87,12 +81,12 @@ export function paginationWithTotalUtil(callback) {
 */
 export function paginationUtil(type, callback) {
   if (!(['withNoTotal', 'withTotal'].includes(type))) {
-    throw new Error('paginationUtil表格分页器参数生成函数的参数type未传或值不符合规范')
+    throw new Error('paginationUtil表格分页器参数生成函数的参数type未传或值不符合规范');
   }
   if (!(callback instanceof Function)) {
-    throw new Error('paginationUtil分页器参数生成函数要求必须提供page发生变化时执行的回调函数')
+    throw new Error('paginationUtil分页器参数生成函数要求必须提供page发生变化时执行的回调函数');
   }
-  return type == 'withNoTotal' ? paginationWithNoTotalUtil.call(this, callback) : paginationWithTotalUtil.call(this, callback)
+  return type == 'withNoTotal' ? paginationWithNoTotalUtil.call(this, callback) : paginationWithTotalUtil.call(this, callback);
 }
 
 /**
@@ -104,5 +98,5 @@ export function paginationUtil(type, callback) {
 */
 export function filterSelectedDatas(keys, datas) {
   const rows = Object.values(datas).flat().filter((item) => keys.includes(item.id));
-  return rows
+  return rows;
 }
